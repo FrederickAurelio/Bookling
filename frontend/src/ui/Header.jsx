@@ -3,6 +3,7 @@ import BookSearch from "../features/booklist/BookSearch";
 import BookSort from "../features/booklist/BookSort";
 import Avatar from "../features/user/Avatar";
 import { HiOutlineLogout } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -16,7 +17,12 @@ function Header() {
       </div>
       <span className="flex items-center gap-1">
         <Avatar />
-        <HiOutlineLogout className="cursor-pointer hover:scale-110" size={22} />
+        <Link to="/logins">
+          <HiOutlineLogout
+            className="cursor-pointer hover:scale-110"
+            size={22}
+          />
+        </Link>
       </span>
     </header>
   );

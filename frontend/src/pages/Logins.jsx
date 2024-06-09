@@ -20,7 +20,7 @@ function Logins() {
       </div>
       <Link
         to="/books"
-        className="fixed left-3 top-2 cursor-pointer text-lg font-semibold duration-200 hover:scale-110"
+        className="fixed left-3 top-2 cursor-pointer text-lg font-semibold duration-200 hover:underline"
       >
         {"<-- Back"}
       </Link>
