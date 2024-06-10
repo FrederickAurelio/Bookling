@@ -10,7 +10,7 @@ function CoverForm() {
       {image && <Cover htmlFor="imageInput" src={image} className="w-full" />}
       <label
         htmlFor="imageInput"
-        className="mt-1 flex w-full cursor-pointer justify-center hover:scale-110 duration-200"
+        className="mt-1 flex w-full cursor-pointer justify-center duration-200 hover:scale-110"
       >
         <HiOutlineUpload size={24} />
         <p>Upload</p>
