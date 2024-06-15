@@ -10,10 +10,10 @@ function List() {
         ))}
       </div>
 
-      <p className="flex items-center justify-center gap-2 pb-3 text-sm text-stone-400">
+      <div className="flex items-center justify-center gap-2 pb-3 text-sm text-stone-400">
         <MiniSpiner />
         <span>Showing 12 of 104 results...</span>
-      </p>
+      </div>
     </>
   );
 }

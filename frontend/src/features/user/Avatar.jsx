@@ -1,39 +1,34 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-function Avatar({ type = "regular" }) {
+function Avatar() {
   let avatar;
-  let name = "Frederickaurelio";
-  const styles = {
-    regular: {
-      link: "items-center justify-center hover:scale-110",
-      img: "size-8",
-      p: "p-2 text-[14px]",
-    },
-    small: {
-      link: "items-center decoration-stone-700 decoration-stone-100 items-start hover:underline",
-      img: "size-6",
-      p: "px-1 text-xs",
-    },
-  };
-
+  const navigate = useNavigate();
   const location = useLocation();
   const currentParams = new URLSearchParams(location.search);
   const userName = "FrederickAurelio";
+  const {
+    authState: { isAuthenticated },
+  } = useAuth();
+
+  function handleClick() {
+    if (isAuthenticated)
+      navigate(`/books/user/${userName}?${currentParams.toString()}`);
+    else navigate(`/logins`);
+  }
 
   return (
-    <Link
-      to={`/books/user/${userName}?${currentParams.toString()}`}
-      className={`items flex cursor-pointer duration-200 ${styles[type].link}`}
+    <div
+      onClick={handleClick}
+      className={`items flex cursor-pointer items-center justify-center duration-200 hover:scale-110`}
     >
       <img
-        className={`aspect-square rounded-full object-cover ${styles[type].img}`}
+        className={`aspect-square size-8 rounded-full object-cover`}
         src={avatar ? avatar : "https://i.ibb.co/WBG9ZjJ/default-avatar.jpg"}
         alt="User avatar"
       />
-      <p className={`font-medium text-stone-700 ${styles[type].p}`}>
-        {name}
-      </p>
-    </Link>
+      <p className={`p-2 text-[14px] font-medium text-stone-700`}>Guests</p>
+    </div>
   );
 }
 

@@ -17,6 +17,7 @@ import ButtonIcon from "../ui/ButtonIcon";
 import Modal from "../ui/Modal";
 import BookForm from "../features/bookdetails/BookForm";
 import ConfirmDelete from "../ui/ConfirmDelete";
+import UserLink from "../features/user/UserLink";
 
 function BookDetails() {
   return (
@@ -35,7 +36,7 @@ function BookDetails() {
           />
           <div className="flex items-center justify-center gap-1 p-1">
             <p>By:</p>
-            <Avatar type="small" />
+            <UserLink />
           </div>
           <div className="flex justify-evenly py-3">
             <Modal>
