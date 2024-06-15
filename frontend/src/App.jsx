@@ -11,9 +11,9 @@ import User from "./pages/User";
 import Logins from "./pages/Logins";
 import SignUp from "./features/authentication/SignUp";
 import Login from "./features/authentication/Login";
-import { AuthProvider } from "./context/AuthContext";
 import useAxiosInterceptors from "./hooks/useAxiosInterceptors";
-
+import { useInitialize } from "./hooks/useInitialize";
+import Spinner from "./ui/Spinner";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -61,20 +61,12 @@ const router = createBrowserRouter([
   },
 ]);
 
-const AxiosInterceptorSetup = ({ children }) => {
-  useAxiosInterceptors(); // Set up Axios interceptors
-
-  return children;
-};
-
 function App() {
-  return (
-    <AuthProvider>
-      <AxiosInterceptorSetup>
-        <RouterProvider router={router} />
-      </AxiosInterceptorSetup>
-    </AuthProvider>
-  );
+  useAxiosInterceptors();
+  const isLoading = useInitialize();
+
+  if (isLoading) return <Spinner type="full" />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

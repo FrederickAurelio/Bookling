@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../utils/axios';
+import { refreshToken } from '../api/apiAuth';
 
 
 const useAxiosInterceptors = () => {
@@ -28,12 +29,7 @@ const useAxiosInterceptors = () => {
                     originalRequest._retry = true;
 
                     try {
-                        const response = await api.post(
-                            '/api/token/refresh',
-                            {},
-                            { withCredentials: true }
-                        );
-
+                        const response = refreshToken();
                         const newAccessToken = response.data.access;
                         login(newAccessToken);  // Update the context with new access token
 
