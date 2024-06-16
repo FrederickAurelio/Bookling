@@ -3,13 +3,20 @@ import BookSearch from "../features/booklist/BookSearch";
 import BookSort from "../features/booklist/BookSort";
 import Avatar from "../features/user/Avatar";
 import { HiOutlineLogout } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Header() {
   const {
     authState: { isAuthenticated },
+    logout,
   } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/logins");
+  }
 
   return (
     <header className="flex h-16 min-h-16 items-center justify-around gap-2 border-b-2 border-stone-100 px-6">
@@ -22,12 +29,12 @@ function Header() {
       <span className="flex items-center gap-1">
         <Avatar />
         {isAuthenticated && (
-          <Link to="/logins">
+          <button onClick={handleLogout}>
             <HiOutlineLogout
               className="cursor-pointer hover:scale-110"
               size={22}
             />
-          </Link>
+          </button>
         )}
       </span>
     </header>

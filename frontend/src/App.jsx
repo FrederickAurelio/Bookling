@@ -2,6 +2,7 @@ import {
   Navigate,
   RouterProvider,
   createBrowserRouter,
+  useNavigate,
 } from "react-router-dom";
 import AppLayout from "./AppLayout";
 import BookDetails from "./pages/BookDetails";
@@ -12,8 +13,10 @@ import Logins from "./pages/Logins";
 import SignUp from "./features/authentication/SignUp";
 import Login from "./features/authentication/Login";
 import useAxiosInterceptors from "./hooks/useAxiosInterceptors";
-import { useInitialize } from "./hooks/useInitialize";
-import Spinner from "./ui/Spinner";
+import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -61,12 +64,44 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
+
 function App() {
   useAxiosInterceptors();
-  const isLoading = useInitialize();
-
-  if (isLoading) return <Spinner type="full" />;
-  return <RouterProvider router={router} />;
+  // const isLoading = useInitialize();
+  // if (isLoading) return <Spinner type="full" />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <Toaster
+        position="top-center"
+        gutter={12}
+        containerStyle={{ margin: "8px" }}
+        toastOptions={{
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 5000,
+          },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+            backgroundColor: "var(--color-grey-0)",
+            color: "var(--color-grey-700)",
+          },
+        }}
+      />
+      <ReactQueryDevtools initialIsOpen={true} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;

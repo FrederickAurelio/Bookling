@@ -1,14 +1,17 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
+import { useLocalStorageState } from "../hooks/useLocalStorageState";
+import toast from "react-hot-toast";
 
 const AuthContent = createContext();
 
 const initialState = {
   token: null,
-  isAuthenticated: false
-}
+  isAuthenticated: false,
+};
 
 function AuthProvider({ children }) {
-  const [authState, setAuthState] = useState(initialState);
+  const [authState, setAuthState] = useLocalStorageState(initialState, "auth");
+
   function login(token) {
     setAuthState({
       token,
@@ -16,14 +19,21 @@ function AuthProvider({ children }) {
     });
   }
   function logout() {
+    // deleteRefreshToken();
     setAuthState(initialState);
+    toast("Logout")
   }
+
+  // function deleteRefreshToken() {
+  //   document.cookie =
+  //     "refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  // }
 
   return (
     <AuthContent.Provider value={{ authState, login, logout }}>
       {children}
     </AuthContent.Provider>
-  )
+  );
 }
 
 function useAuth() {

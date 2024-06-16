@@ -1,8 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useUser } from "./useUser";
+import Spinner from "../../ui/Spinner";
+import MiniSpiner from "../../ui/MiniSpiner";
 
 function Avatar() {
-  let avatar;
   const navigate = useNavigate();
   const location = useLocation();
   const currentParams = new URLSearchParams(location.search);
@@ -11,12 +13,15 @@ function Avatar() {
     authState: { isAuthenticated },
   } = useAuth();
 
+  const {user, isPending} = useUser();
+
   function handleClick() {
     if (isAuthenticated)
       navigate(`/books/user/${userName}?${currentParams.toString()}`);
     else navigate(`/logins`);
   }
 
+  if(isPending) return <MiniSpiner />
   return (
     <div
       onClick={handleClick}
@@ -24,7 +29,7 @@ function Avatar() {
     >
       <img
         className={`aspect-square size-8 rounded-full object-cover`}
-        src={avatar ? avatar : "https://i.ibb.co/WBG9ZjJ/default-avatar.jpg"}
+        src={"https://i.ibb.co/WBG9ZjJ/default-avatar.jpg"}
         alt="User avatar"
       />
       <p className={`p-2 text-[14px] font-medium text-stone-700`}>Guests</p>
