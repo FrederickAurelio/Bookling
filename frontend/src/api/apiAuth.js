@@ -16,9 +16,11 @@ export async function loginApi(formData) {
   return response.data;
 }
 
-export async function getUser() {
+export async function getUser(username) {
+  if (!username)
+    return { username: "Login", icon: "https://i.ibb.co/WBG9ZjJ/default-avatar.jpg" };
   try {
-    const response = await api.get("/user");
+    const response = await api.get(`/user/${username}/`);
     return response.data;
   } catch (error) {
     throw new Error("Failed to get user data")

@@ -3,7 +3,7 @@ import BookSearch from "../features/booklist/BookSearch";
 import BookSort from "../features/booklist/BookSort";
 import Avatar from "../features/user/Avatar";
 import { HiOutlineLogout } from "react-icons/hi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Header() {

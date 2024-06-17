@@ -6,22 +6,24 @@ const AuthContent = createContext();
 
 const initialState = {
   token: null,
+  username: null,
   isAuthenticated: false,
 };
 
 function AuthProvider({ children }) {
   const [authState, setAuthState] = useLocalStorageState(initialState, "auth");
 
-  function login(token) {
+  function login({ token, username }) {
     setAuthState({
       token,
+      username,
       isAuthenticated: true,
     });
   }
   function logout() {
     // deleteRefreshToken();
     setAuthState(initialState);
-    toast("Logout")
+    toast("Logout");
   }
 
   // function deleteRefreshToken() {

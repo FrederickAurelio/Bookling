@@ -30,8 +30,8 @@ function Login() {
     formData.append("password", data.password);
 
     try {
-      const token = await loginApi(formData);
-      await login(token.access);
+      const { access } = await loginApi(formData);
+      await login({ token: access, username: data.username });
       // handle success
       toast.success("Login Success!");
       navigate("/books");
@@ -60,7 +60,7 @@ function Login() {
       <InputRow
         className="bg-white"
         icon={HiOutlineUser}
-        placeholder="Email / Username"
+        placeholder="Username"
         type="text"
         id="username"
         register={register}
