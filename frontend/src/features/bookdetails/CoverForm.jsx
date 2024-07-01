@@ -2,8 +2,8 @@ import Cover from "../../ui/Cover";
 import useHandleImage from "../../hooks/useHandleImage";
 import { HiOutlineUpload } from "react-icons/hi";
 
-function CoverForm() {
-  const { image, handleImageChange } = useHandleImage();
+function CoverForm({ register }) {
+  const { image, handleImageChange } = useHandleImage(null);
   return (
     <>
       {!image && <Cover htmlFor="imageInput" className="w-full" />}
@@ -22,6 +22,7 @@ function CoverForm() {
         className="absolute top-1 h-[55%] w-full cursor-pointer opacity-0"
         accept="image/*"
         type="file"
+        {...register("imageInput")}
         onChange={handleImageChange}
       />
     </>
