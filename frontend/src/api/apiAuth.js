@@ -7,6 +7,15 @@ export async function refreshToken() {
   return response;
 }
 
+export async function signupApi(formData) {
+  const response = await api.post("/user/registration/", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    }
+  })
+  return response.data;
+}
+
 export async function loginApi(formData) {
   const response = await api.post("/user/api/token/", formData, {
     headers: {
@@ -18,7 +27,7 @@ export async function loginApi(formData) {
 
 export async function getUser(username) {
   if (!username)
-    return { username: "Login", icon: "https://i.ibb.co/WBG9ZjJ/default-avatar.jpg" };
+    return { username: "Login", profile: { icon: "https://i.ibb.co/WBG9ZjJ/default-avatar.jpg" } };
   try {
     const response = await api.get(`/user/${username}/`);
     return response.data;

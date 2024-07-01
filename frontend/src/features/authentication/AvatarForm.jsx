@@ -2,7 +2,7 @@ import useHandleImage from "../../hooks/useHandleImage";
 import { HiOutlineUpload } from "react-icons/hi";
 import AvatarFormImage from "./AvatarFormImage";
 
-function AvatarForm({ disabled }) {
+function AvatarForm({ disabled, register }) {
   const { image, handleImageChange } = useHandleImage();
   return (
     <div className="ml-0.5 mt-2 flex h-fit items-center gap-3">
@@ -26,8 +26,9 @@ function AvatarForm({ disabled }) {
         className="bottom-15 absolute left-4 h-[10%] w-[90%] cursor-pointer opacity-0"
         accept="image/*"
         type="file"
-        onChange={handleImageChange}
         disabled={disabled}
+        {...register("icon")}
+        onChange={handleImageChange}
       />
     </div>
   );

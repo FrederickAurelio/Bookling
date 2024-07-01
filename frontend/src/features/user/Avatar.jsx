@@ -28,7 +28,7 @@ function Avatar() {
     >
       <img
         className={`aspect-square size-8 rounded-full object-cover`}
-        src={user.icon}
+        src={user.profile.icon}
         alt="User avatar"
       />
       <p className={`p-2 text-[14px] font-medium text-stone-700`}>

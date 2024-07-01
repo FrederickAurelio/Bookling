@@ -13,6 +13,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { HiOutlineKey } from "react-icons/hi2";
+import { signupApi } from "../../api/apiAuth";
 
 function SignUp() {
   const { login } = useAuth();
@@ -31,27 +32,16 @@ function SignUp() {
     formData.append("username", data.username);
     formData.append("password", data.password);
     formData.append("email", data.email);
-    formData.append("icon", data.icon);
-    // BELUM FIX
+    if (data.icon[0]) formData.append("icon", data.icon[0]);
 
     try {
-      // const token = await loginApi(formData);
-      // await login(token.access);
+      const token = await signupApi(formData);
+      console.log(token);
+      await login({ token: token.access, username: data.username });
       // handle success
-      toast.success("Login Success!");
+      toast.success("Signup Success!");
       navigate("/books");
     } catch (error) {
-      // if (error.response) {
-      //   if (error.response.status === 400 || error.response.status === 401) {
-      //     toast.error("Invalid username or password.");
-      //   } else if (error.response.status === 403) {
-      //     toast.error("Access timeout or forbidden.");
-      //   } else {
-      //     toast.error("Login failed. Please try again later.");
-      //   }
-      // } else if (error.request) {
-      //   toast.error("Network error. Please check your internet connection.");
-      // } else {
       console.error("Error:", error.message);
       toast.error("An unexpected error occurred. Please try again.");
       // }
@@ -81,6 +71,10 @@ function SignUp() {
         register={register}
         disabled={isLoading}
         errors={errors}
+        pattern={{
+          value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+          message: "Please enter a valid email address",
+        }}
       />
       <InputRow
         className="bg-white"
@@ -91,6 +85,10 @@ function SignUp() {
         register={register}
         disabled={isLoading}
         errors={errors}
+        minLength={{
+          value: 8,
+          message: `Password must be at least 8 characters long`,
+        }}
       />
       <InputRow
         className="bg-white"
@@ -105,7 +103,7 @@ function SignUp() {
           value === getValues("password") || "Passwords do not match"
         }
       />
-      <AvatarForm disabled={isLoading} />
+      <AvatarForm disabled={isLoading} register={register} />
 
       <span className="mt-5 flex justify-center">
         <ButtonIcon

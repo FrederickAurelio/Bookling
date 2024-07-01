@@ -8,6 +8,8 @@ function InputRow({
   disabled,
   errors,
   validate,
+  pattern,
+  minLength,
 }) {
   const placeHolder = {
     title: "Book Title...",
@@ -22,7 +24,7 @@ function InputRow({
   return (
     <>
       <div
-        className={`flex gap-2 py-2 text-xl text-stone-700 ${
+        className={`flex gap-2 pt-3 text-xl text-stone-700 ${
           type === "desc" ? "py-2" : "items-center"
         }`}
       >
@@ -31,8 +33,11 @@ function InputRow({
           <textarea
             disabled={disabled}
             id={id}
-            className={`input h-36 text-justify ${className}`}
+            className={`input h-36 text-justify ${className} ${errors[id] ? "border-rose-700" : ""}`}
             placeholder={placeholder || placeHolder[id]}
+            {...register(id, {
+              required: `${id} is required`,
+            })}
           ></textarea>
         )}
         {type === "password" && id === "confirmPassword" && (
@@ -40,7 +45,7 @@ function InputRow({
             disabled={disabled}
             step="0.01"
             id={id}
-            className={`input ${className}`}
+            className={`input ${className} ${errors[id] ? "border-rose-700" : ""}`}
             placeholder={placeholder || placeHolder[id]}
             type="password"
             {...register(id, {
@@ -49,20 +54,25 @@ function InputRow({
             })}
           />
         )}
-        {type !== "desc" && !(type === "password" && id === "confirmPassword") && (
-          <input
-            disabled={disabled}
-            step="0.01"
-            id={id}
-            className={`input ${className}`}
-            placeholder={placeholder || placeHolder[id]}
-            type={type}
-            {...register(id, { required: `${id} is required` })}
-          />
-        )}
+        {type !== "desc" &&
+          !(type === "password" && id === "confirmPassword") && (
+            <input
+              disabled={disabled}
+              step="0.01"
+              id={id}
+              className={`input ${className} ${errors[id] ? "border-rose-700" : ""}`}
+              placeholder={placeholder || placeHolder[id]}
+              type={type}
+              {...register(id, {
+                required: `${id} is required`,
+                pattern: pattern,
+                minLength: minLength,
+              })}
+            />
+          )}
       </div>
       {errors[id] && (
-        <span className="ml-12 flex capitalize" role="alert">
+        <span className="ml-12 flex text-xs capitalize" role="alert">
           {errors[id].message}
         </span>
       )}

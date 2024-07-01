@@ -11,11 +11,26 @@ import {
   HiOutlineInformationCircle,
   HiOutlineBookOpen,
 } from "react-icons/hi2";
+import { useForm } from "react-hook-form";
 
 function BookForm({ onCloseModal }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  function onSubmit(data) {
+    // HERE
+    // ABOI HO
+  }
+
   return (
-    <form className="grid h-[32rem] w-[60rem] grid-cols-5 px-2">
-      <div className="py-2 relative col-span-1 w-full">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="grid h-[32rem] w-[60rem] grid-cols-5 px-2"
+    >
+      <div className="relative col-span-1 w-full py-2">
         <CoverForm />
         <div className="flex justify-around py-2">
           <ButtonIcon
@@ -32,14 +47,56 @@ function BookForm({ onCloseModal }) {
           />
         </div>
       </div>
-      <div className="col-span-4 flex flex-col divide-y-2 divide-stone-200 pl-8">
-        <InputRow icon={HiOutlineBookOpen} type="text" id="title" />
-        <InputRow icon={HiOutlineUser} type="text" id="author" />
-        <InputRow icon={HiOutlineCalendarDays} type="date" id="releaseDate" />
-        <InputRow icon={HiOutlineNewspaper} type="text" id="publisher" />
-        <InputRow icon={HiOutlineBanknotes} type="number" id="price" />
-        <InputRow icon={HiOutlineInformationCircle} type="text" id="genre" />
-        <InputRow icon={HiBars3BottomLeft} type="desc" id="description" />
+      <div className="col-span-4 flex flex-col pl-8">
+        <InputRow
+          icon={HiOutlineBookOpen}
+          type="text"
+          id="title"
+          register={register}
+          errors={errors}
+        />
+        <InputRow
+          icon={HiOutlineUser}
+          type="text"
+          id="author"
+          register={register}
+          errors={errors}
+        />
+        <InputRow
+          icon={HiOutlineCalendarDays}
+          type="date"
+          id="releaseDate"
+          register={register}
+          errors={errors}
+        />
+        <InputRow
+          icon={HiOutlineNewspaper}
+          type="text"
+          id="publisher"
+          register={register}
+          errors={errors}
+        />
+        <InputRow
+          icon={HiOutlineBanknotes}
+          type="number"
+          id="price"
+          register={register}
+          errors={errors}
+        />
+        <InputRow
+          icon={HiOutlineInformationCircle}
+          type="text"
+          id="genre"
+          register={register}
+          errors={errors}
+        />
+        <InputRow
+          icon={HiBars3BottomLeft}
+          type="desc"
+          id="description"
+          register={register}
+          errors={errors}
+        />
       </div>
     </form>
   );

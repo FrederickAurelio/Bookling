@@ -1,8 +1,8 @@
 import { HiHeart, HiOutlineHeart } from "react-icons/hi2";
 import { useState } from "react";
 
-function Like() {
-  const [totalLike, setTotalLike] = useState(23);
+function Like({totalLike:initial}) {
+  const [totalLike, setTotalLike] = useState(initial);
   const [like, setLike] = useState(false);
   function handleLike() {
     setLike((like) => {

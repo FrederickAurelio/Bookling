@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 
-function UserLink() {
+function UserLink({username, icon}) {
+  const currentParams = new URLSearchParams(location.search);
+  
   return (
     <Link
-      to="/books/user/${userName}?${currentParams.toString()}"
+      to={`/books/user/${username}?${currentParams.toString()}`}
       className={`items flex cursor-pointer items-center decoration-stone-700 duration-200 hover:underline`}
     >
       <img
         className={`aspect-square size-6 rounded-full object-cover`}
-        src={"https://i.ibb.co/WBG9ZjJ/default-avatar.jpg"}
+        src={icon}
         alt="User avatar"
       />
       <p className={`px-1 text-xs font-medium text-stone-700`}>
-        FrederickAurelio
+        {username}
       </p>
     </Link>
   );
