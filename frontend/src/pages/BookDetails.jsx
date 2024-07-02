@@ -20,12 +20,18 @@ import UserLink from "../features/user/UserLink";
 import { useParams } from "react-router-dom";
 import { useBook } from "../features/bookdetails/useBook";
 import Spinner from "../ui/Spinner";
+import { useAuth } from "../context/AuthContext";
 
 function BookDetails() {
   const { bookId } = useParams();
   const { book = {}, isPending } = useBook(bookId);
 
   const {
+    authState: { isAuthenticated, username: currentUsername },
+  } = useAuth();
+
+  const {
+    id,
     author,
     cover_url,
     description,
@@ -42,42 +48,50 @@ function BookDetails() {
   console.log(genres)
 
   if (isPending) return <Spinner />;
+  if (!id)
+    return (
+      <p className="col-span-3 flex justify-center py-8 text-3xl font-medium">
+        🚫Book Not Found!
+      </p>
+    );
   return (
     <div className="col-span-3 flex flex-col overflow-y-auto bg-stone-100 px-12 py-8">
       <div className="grid grid-cols-5">
         <h1 className="col-span-4 text-5xl font-semibold">{title}</h1>
-        <Like totalLike={totalLike}/>
+        <Like isAuthenticated={isAuthenticated} totalLike={totalLike} />
       </div>
       <div className="grid grid-cols-4">
         <div className="col-span-1 flex flex-col">
-          <Cover className="mt-5" src={`http://192.168.3.25:8000/${cover_url}`} />
+          <Cover className="mt-5" src={cover_url} />
           <div className="flex items-center justify-center gap-1 p-1">
             <p>By:</p>
             <UserLink username={username} icon={icon} />
           </div>
           <div className="flex justify-evenly py-3">
-            <Modal>
-              <Modal.Open id="edit">
-                <ButtonIcon
-                  icon={HiOutlinePencilSquare}
-                  text="Edit"
-                  className="text-stone-600 hover:scale-110"
-                />
-              </Modal.Open>
-              <Modal.Open id="delete">
-                <ButtonIcon
-                  icon={HiOutlineTrash}
-                  text="Delete"
-                  className="text-rose-600 hover:scale-110"
-                />
-              </Modal.Open>
-              <Modal.Window id="edit">
-                <BookForm />
-              </Modal.Window>
-              <Modal.Window id="delete">
-                <ConfirmDelete />
-              </Modal.Window>
-            </Modal>
+            {username === currentUsername && (
+              <Modal>
+                <Modal.Open id="edit">
+                  <ButtonIcon
+                    icon={HiOutlinePencilSquare}
+                    text="Edit"
+                    className="text-stone-600 hover:scale-110"
+                  />
+                </Modal.Open>
+                <Modal.Open id="delete">
+                  <ButtonIcon
+                    icon={HiOutlineTrash}
+                    text="Delete"
+                    className="text-rose-600 hover:scale-110"
+                  />
+                </Modal.Open>
+                <Modal.Window id="edit">
+                  <BookForm editBookValues={book} />
+                </Modal.Window>
+                <Modal.Window id="delete">
+                  <ConfirmDelete id={id}/>
+                </Modal.Window>
+              </Modal>
+            )}
           </div>
         </div>
         <div className="col-span-3 flex flex-col divide-y-2 divide-stone-300 p-3 px-8">
@@ -94,6 +108,7 @@ function BookDetails() {
             text={genres.join(", ")}
           />
           <DetailItem
+            type={"desc"}
             icon={HiBars3BottomLeft}
             text={description}
           />

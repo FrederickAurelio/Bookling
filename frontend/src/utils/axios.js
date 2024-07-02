@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { baseURL } from './helpers';
 
 // Create an Axios instance
 const api = axios.create({
-  baseURL: 'http://192.168.3.25:8000',
+  baseURL: baseURL,
   withCredentials: true, 
 });
 

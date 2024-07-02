@@ -13,28 +13,51 @@ import {
 } from "react-icons/hi2";
 import { useForm } from "react-hook-form";
 import { useCreateBook } from "./useCreateBook";
+import { useEditBook } from "./useEditBook";
 
-function BookForm({ onCloseModal }) {
+function BookForm({ onCloseModal, editBookValues = {} }) {
+  const editSession = editBookValues?.title !== undefined;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: editSession
+      ? {
+          ...editBookValues,
+          genre: editBookValues.genres.join(", "),
+          releaseDate: new Date(editBookValues.releaseDate)
+            .toISOString()
+            .split("T")[0],
+          imageInput: [editBookValues.imageInput],
+        }
+      : {},
+  });
 
-  const {isCreating, createBook} = useCreateBook();
+  const { isCreating, createBook } = useCreateBook();
+  const { isEditing, editBook } = useEditBook();
 
   function onSubmit(data) {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("author", data.author);
-    formData.append("releaseDate", data.releaseDate);
+    formData.append("releaseDate", new Date(data.releaseDate).toISOString());
     formData.append("publisher", data.publisher);
     formData.append("price", data.price);
-    formData.append("genres", data.genre.split(", "));
+    formData.append("genres", data.genre);
     formData.append("description", data.description);
-    formData.append("cover_url", data.imageInput[0]);
+    formData.append("cover", data.imageInput[0]);
 
-    createBook(formData);
+    for (var pair of formData.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+    }
+
+    if (editSession) {
+      editBook({ id: editBookValues?.id, formData });
+    } else createBook(formData);
+
+    onCloseModal();
   }
 
   return (
@@ -43,21 +66,25 @@ function BookForm({ onCloseModal }) {
       className="grid h-[32rem] w-[60rem] grid-cols-5 px-2"
     >
       <div className="relative col-span-1 w-full py-2">
-        <CoverForm register={register}/>
+        <CoverForm
+          register={register}
+          editCover={editBookValues?.cover_url}
+          errors={errors}
+        />
         <div className="flex justify-around py-2">
           <ButtonIcon
             icon={HiOutlineBackspace}
             onClick={onCloseModal}
             text="Cancel"
             className="text-stone-600 hover:scale-110"
-            disabled={isCreating}
+            disabled={isCreating || isEditing}
           />
           <ButtonIcon
             type="submit"
             icon={HiOutlineSaveAs}
             text="Submit"
             className="text-green-700 hover:scale-110"
-            disabled={isCreating}
+            disabled={isCreating || isEditing}
           />
         </div>
       </div>
@@ -68,7 +95,7 @@ function BookForm({ onCloseModal }) {
           id="title"
           register={register}
           errors={errors}
-          disabled={isCreating}
+          disabled={isCreating || isEditing}
         />
         <InputRow
           icon={HiOutlineUser}
@@ -76,7 +103,7 @@ function BookForm({ onCloseModal }) {
           id="author"
           register={register}
           errors={errors}
-          disabled={isCreating}
+          disabled={isCreating || isEditing}
         />
         <InputRow
           icon={HiOutlineCalendarDays}
@@ -84,7 +111,7 @@ function BookForm({ onCloseModal }) {
           id="releaseDate"
           register={register}
           errors={errors}
-          disabled={isCreating}
+          disabled={isCreating || isEditing}
         />
         <InputRow
           icon={HiOutlineNewspaper}
@@ -92,7 +119,7 @@ function BookForm({ onCloseModal }) {
           id="publisher"
           register={register}
           errors={errors}
-          disabled={isCreating}
+          disabled={isCreating || isEditing}
         />
         <InputRow
           icon={HiOutlineBanknotes}
@@ -100,7 +127,7 @@ function BookForm({ onCloseModal }) {
           id="price"
           register={register}
           errors={errors}
-          disabled={isCreating}
+          disabled={isCreating || isEditing}
         />
         <InputRow
           icon={HiOutlineInformationCircle}
@@ -108,7 +135,7 @@ function BookForm({ onCloseModal }) {
           id="genre"
           register={register}
           errors={errors}
-          disabled={isCreating}
+          disabled={isCreating || isEditing}
         />
         <InputRow
           icon={HiBars3BottomLeft}
@@ -116,7 +143,7 @@ function BookForm({ onCloseModal }) {
           id="description"
           register={register}
           errors={errors}
-          disabled={isCreating}
+          disabled={isCreating || isEditing}
         />
       </div>
     </form>
