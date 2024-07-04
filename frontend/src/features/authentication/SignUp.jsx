@@ -35,9 +35,9 @@ function SignUp() {
     if (data.icon[0]) formData.append("icon", data.icon[0]);
 
     try {
-      const token = await signupApi(formData);
-      console.log(token);
-      await login({ token: token.access, username: data.username });
+      const response = await signupApi(formData);
+      const accessToken = response.token.access;
+      await login({ token: accessToken, username: data.username });
       // handle success
       toast.success("Signup Success!");
       navigate("/books");
