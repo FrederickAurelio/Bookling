@@ -23,7 +23,7 @@ function Header() {
       <BookSearch />
       <div className="flex items-center">
         <BookSort />
-        <Filter label="Genre" options={["all", "education", "history"]} />
+        <Filter label="Genre" options={["all", "Classics", "Fiction", "Literature", "Mystery"]} />
         <Filter label="Price" options={["all", ">10", "<10"]} />
       </div>
       <span className="flex items-center gap-1">
