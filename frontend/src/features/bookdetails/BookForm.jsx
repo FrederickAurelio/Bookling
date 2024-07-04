@@ -14,6 +14,7 @@ import {
 import { useForm } from "react-hook-form";
 import { useCreateBook } from "./useCreateBook";
 import { useEditBook } from "./useEditBook";
+import { resizeFile } from "../../utils/helpers";
 
 function BookForm({ onCloseModal, editBookValues = {} }) {
   const editSession = editBookValues?.title !== undefined;
@@ -38,7 +39,7 @@ function BookForm({ onCloseModal, editBookValues = {} }) {
   const { isCreating, createBook } = useCreateBook();
   const { isEditing, editBook } = useEditBook();
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("author", data.author);
@@ -47,10 +48,14 @@ function BookForm({ onCloseModal, editBookValues = {} }) {
     formData.append("price", data.price);
     formData.append("genres", data.genre);
     formData.append("description", data.description);
-    formData.append("cover", data.imageInput[0]);
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0]+ ', ' + pair[1]); 
+    if (data.imageInput[0]) {
+      try {
+        const resizedImage = await resizeFile(data.imageInput[0]);
+        formData.append("cover", resizedImage, resizedImage.name);
+      } catch (err) {
+        formData.append("cover", data.imageInput[0]);
+      }
     }
 
     if (editSession) {

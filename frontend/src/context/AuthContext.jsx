@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 import toast from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AuthContent = createContext();
 
@@ -12,16 +13,20 @@ const initialState = {
 
 function AuthProvider({ children }) {
   const [authState, setAuthState] = useLocalStorageState(initialState, "auth");
+  const queryClient = useQueryClient();
 
   function login({ token, username }) {
+    queryClient.removeQueries();
     setAuthState({
       token,
       username,
       isAuthenticated: true,
     });
   }
+
   function logout() {
     // deleteRefreshToken();
+    queryClient.removeQueries();
     setAuthState(initialState);
     toast("Logout");
   }

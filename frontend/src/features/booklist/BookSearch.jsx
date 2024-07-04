@@ -3,26 +3,39 @@ import {
   HiOutlineBookOpen,
   HiOutlineUser,
 } from "react-icons/hi2";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function BookSearch() {
   const [searchParam, setSearchParam] = useSearchParams();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(() => {
+    const searchValue = searchParam.get("search")?.split("-")[1];
+    return searchValue || "";
+  });
   const [searchType, setSearchType] = useState(
-    searchParam.get("search")
-      ? searchParam.get("search").split("-")[0]
-      : "title",
+    searchParam.get("search")?.split("-")[0] || "title",
   );
+
   const inputRef = useRef();
+
+  useEffect(() => {
+    const searchValue = searchParam.get("search")?.split("-")[1];
+    if (searchValue) {
+      setSearch(searchValue);
+    }
+  }, [searchParam]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!search || search.length < 3) return null;
-    searchParam.set("search", `${searchType}-${search}`);
+    if (!search || search.length < 1) {
+      searchParam.delete("search");
+    } else {
+      searchParam.set("search", `${searchType}-${search}`);
+    }
     setSearchParam(searchParam);
-    inputRef.current.blur();
+    inputRef.current?.blur();
   }
+
   return (
     <form onSubmit={handleSubmit} className="mr-2 flex items-center">
       <button

@@ -43,9 +43,10 @@ function BookDetails() {
     title,
     totalLike,
     username,
+    is_liked,
   } = book;
 
-  console.log(genres)
+  console.log(book)
 
   if (isPending) return <Spinner />;
   if (!id)
@@ -58,7 +59,12 @@ function BookDetails() {
     <div className="col-span-3 flex flex-col overflow-y-auto bg-stone-100 px-12 py-8">
       <div className="grid grid-cols-5">
         <h1 className="col-span-4 text-5xl font-semibold">{title}</h1>
-        <Like isAuthenticated={isAuthenticated} totalLike={totalLike} />
+        <Like
+          isAuthenticated={isAuthenticated}
+          totalLike={totalLike}
+          is_liked={is_liked}
+          id={id}
+        />
       </div>
       <div className="grid grid-cols-4">
         <div className="col-span-1 flex flex-col">
@@ -88,7 +94,7 @@ function BookDetails() {
                   <BookForm editBookValues={book} />
                 </Modal.Window>
                 <Modal.Window id="delete">
-                  <ConfirmDelete id={id}/>
+                  <ConfirmDelete id={id} />
                 </Modal.Window>
               </Modal>
             )}

@@ -13,8 +13,9 @@ import SignUp from "./features/authentication/SignUp";
 import Login from "./features/authentication/Login";
 import useAxiosInterceptors from "./hooks/useAxiosInterceptors";
 import { Toaster } from "react-hot-toast";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Spinner from "./ui/Spinner";
+import { useEffect, useState } from "react";
 
 const router = createBrowserRouter([
   {
@@ -63,20 +64,25 @@ const router = createBrowserRouter([
   },
 ]);
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 60 * 1000,
-    },
-  },
-});
-
 function App() {
   useAxiosInterceptors();
+
+  // Wait until get Access token is done
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(
+    function () {
+      setTimeout(() => setIsLoading(false), 300);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
   // const isLoading = useInitialize();
   // if (isLoading) return <Spinner type="full" />;
+
+  if (isLoading) return <Spinner type="full" />;
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <RouterProvider router={router} />
       <Toaster
         position="top-center"
@@ -98,8 +104,8 @@ function App() {
           },
         }}
       />
-      <ReactQueryDevtools initialIsOpen={true} />
-    </QueryClientProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </>
   );
 }
 
