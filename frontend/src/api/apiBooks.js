@@ -43,3 +43,51 @@ export async function deleteBook(id) {
     throw new Error("Failed to delete book")
   }
 }
+
+export async function likeBook(id) {
+  try {
+    const response = await api.post(`/booklist/${id}/like/`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to like the book")
+  }
+}
+
+export async function unlikeBook(id) {
+  try {
+    const response = await api.delete(`/booklist/${id}/unlike/`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to unlike the book")
+  }
+}
+
+export async function getBooks({ pageParam, sortBy, asc, searchType, searchValue, price, genre }) {
+  const search = `${searchValue ? `&search-${searchType}=${searchValue}` : ""}`
+  const genres = `${genre === "all" ? "" : `genres=${genre}&`}`
+  try {
+    const response = await api.get(`/booklist/?${genres}price=${price}${search}&sortBy=${asc === "asc" ? "" : "-"}${sortBy}&page=${pageParam}`);
+
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch books")
+  }
+}
+
+export async function getMyLike({ pageParam, username }) {
+  try {
+    const response = await api.get(`/booklist/like/?name=${username}&page=${pageParam}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch books")
+  }
+}
+
+export async function getMyPost({ pageParam, username }) {
+  try {
+    const response = await api.get(`/booklist/owned/?name=${username}&page=${pageParam}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch books")
+  }
+}

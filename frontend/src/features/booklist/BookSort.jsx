@@ -27,7 +27,7 @@ function BookSort() {
     <div className="flex items-center gap-1">
       <label className="label">SortBy: </label>
 
-      {["recently", "name", "date", "price"].map((value) => (
+      {["recently", "title", "date", "price"].map((value) => (
         <SortOption
           key={value}
           sortType={sortType}

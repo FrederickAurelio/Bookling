@@ -1,18 +1,37 @@
+import { useInView } from "react-intersection-observer";
 import MiniSpiner from "../../ui/MiniSpiner";
 import BookCard from "./BookCard";
+import { useEffect } from "react";
 
-function List() {
+function List({
+  total,
+  books,
+  fetchNextPage,
+  hasNextPage,
+  isFetchingNextPage,
+}) {
+  const { ref, inView } = useInView();
+
+  useEffect(
+    function () {
+      if (inView && hasNextPage) fetchNextPage();
+    },
+    [fetchNextPage, hasNextPage, inView],
+  );
+
   return (
     <>
       <div className="grid grid-cols-3 gap-1 px-5 py-2">
-        {Array.from({ length: 12 }, (_, i) => (
-          <BookCard key={i} />
+        {books.map((book) => (
+          <BookCard book={book} key={book.id} />
         ))}
       </div>
 
       <div className="flex items-center justify-center gap-2 pb-3 text-sm text-stone-400">
-        <MiniSpiner />
-        <span>Showing 12 of 104 results...</span>
+        {isFetchingNextPage && <MiniSpiner />}
+        <span ref={ref}>
+          Showing {books.length} of {total} results...
+        </span>
       </div>
     </>
   );
