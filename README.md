@@ -13,7 +13,7 @@
 ### Backend
 <a href="https://www.django-rest-framework.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/9ae50146-d917-4e08-b82f-6a86f8f29a49" alt="django rest framework" width="70" height="40"/> </a><img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/3bfc4def-6100-4fd4-80a4-da159230ce82" alt="crud" width="70" height="40"/><img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/74f14d60-15f6-4e58-9aa5-ff9115c0533e" alt="jwt" width="70" height="40"/>
 
-## Key Features
+## 👉Key Features
 <ul>
   <li><strong>User Management:</strong> Sign up and log in to create an account.</li>
   <li><strong>Book Sharing:</strong> Share and discover new books with other users.</li>
