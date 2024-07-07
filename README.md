@@ -5,7 +5,7 @@ This is a a website that allows users to sign up, log in, and post book informat
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="30" height="30"/>
 
 
-The website was implemented using modern stack combining React as the front-end, and Django Rest Framework as the back-end.
+<p>The website was implemented using modern stack combining React as the front-end, and Django Rest Framework as the back-end.</p>
 
 ## 🖼️Screenshots
 ![Screenshot 2024-07-05 195043](https://github.com/FrederickAurelio/Bookling/assets/121996224/fc8a81d9-aafa-4c57-8211-68693719feb9)
