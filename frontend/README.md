@@ -17,3 +17,4 @@
 - Compound Component Pattern (Modal)
 - React Hot Tost (UI)
 - React Icons (UI)
+- React Error Boundary (Catch Render Error)
