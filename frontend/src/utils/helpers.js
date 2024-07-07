@@ -1,7 +1,7 @@
 import Resizer from "react-image-file-resizer";
 
-export const baseURL = "http://192.168.3.25:8000/"
-// export const baseURL = "http://127.0.0.1:8000/"
+// export const baseURL = "http://192.168.3.25:8000/"
+export const baseURL = "http://127.0.0.1:8000/"
 
 export const formatCurrency = (value) =>
   new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(

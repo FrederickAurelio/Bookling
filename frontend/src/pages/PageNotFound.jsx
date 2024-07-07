@@ -1,4 +1,3 @@
-import { HiOutlineArrowLeft } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 function PageNotFound() {
