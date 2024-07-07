@@ -28,9 +28,10 @@
 
 ## Flowchart and Entity Relationship Diagram
 <p align="center">
-  <img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/51848457-6e0d-4a79-8da1-1f26775ba271" alt="Flowchart" width="400"/>
-  <img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/5f1600e8-03c7-41eb-91c7-fbb9689c8977" alt="Entity Relationship Diagram" width="400"/>
+  <img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/51848457-6e0d-4a79-8da1-1f26775ba271" alt="Flowchart" height="300"/>
+  <img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/5f1600e8-03c7-41eb-91c7-fbb9689c8977" alt="Entity Relationship Diagram" height="300"/>
 </p>
+
 
 ## 🧑‍💻Contributors
 - Frederick Aurelio Halim (front-end)
