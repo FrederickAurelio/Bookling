@@ -5,10 +5,10 @@
 - npm run dev
 
 ### 🤔 What Technology did I use
+- Tailwind CSS (Syling)
 - React Query (For All Remote State)
 - React Router (Page Navigation)
 - React Form (Form Handling)
-- Tailwind CSS (CSS)
 - Compound Component Pattern (Modal)
 - React Hot Tost (UI)
 - React Icons (UI)
