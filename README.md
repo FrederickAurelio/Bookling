@@ -2,9 +2,7 @@
 This is a a website that allows users to sign up, log in, and post book information to share with others. Users can search, sort, and filter books according to their preferences and save their favorite books. Users can also view which books others favour
 
 ## ⚙️Technology
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="30" height="30"/>
-
-
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="35" height="35"/>
 <p>The website was implemented using modern stack combining React as the front-end, and Django Rest Framework as the back-end.</p>
 
 ## 🖼️Screenshots
