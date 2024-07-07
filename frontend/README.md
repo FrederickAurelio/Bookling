@@ -10,7 +10,6 @@
 - React Form (Form Handling)
 - Tailwind CSS (CSS)
 - Compound Component Pattern (Modal)
-- React Error Boundary (Catch Error when rendering)
 - React Hot Tost (UI)
 - React Icons (UI)
 
