@@ -12,5 +12,3 @@
 - Compound Component Pattern (Modal)
 - React Hot Tost (UI)
 - React Icons (UI)
-
-### 🧑‍💻 Features
