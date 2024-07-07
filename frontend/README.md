@@ -13,6 +13,8 @@
 - React Query (For All Remote State)
 - React Router (Page Navigation)
 - React Form (Form Handling)
+- Context Api (Authentication)
+- Axios (HTTP request)
 - Compound Component Pattern (Modal)
 - React Hot Tost (UI)
 - React Icons (UI)
