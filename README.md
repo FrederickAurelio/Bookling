@@ -3,7 +3,7 @@ This is a a website that allows users to sign up, log in, and post book informat
 
 ## ⚙️Technology
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="35" height="35"/>
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="django-rest-framework" width="35" height="35"/>
+<img src="https://storage.caktusgroup.com/media/blog-images/drf-logo2.png" alt="django-rest-framework" width="35" height="35"/>
 <p>The website was implemented using modern stack combining React as the front-end, and Django Rest Framework as the back-end.</p>
 
 ## 🖼️Screenshots
