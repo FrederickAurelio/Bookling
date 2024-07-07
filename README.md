@@ -16,11 +16,11 @@
 
 ## Key Features
 <ul>
-  <li><strong>User Management:</strong> Sign up and log in to create a personalized account.</li>
-  <li><strong>Book Sharing:</strong> Share and discover new books with fellow users.</li>
+  <li><strong>User Management:</strong> Sign up and log in to create an account.</li>
+  <li><strong>Book Sharing:</strong> Share and discover new books with other users.</li>
   <li><strong>Advanced Search:</strong> Easily find books by title, author.</li>
   <li><strong>Sorting and Filtering:</strong> Customize your book list based on your preferences.</li>
-  <li><strong>Favorite Books:</strong> Save and manage your favorite books for quick access.</li>
+  <li><strong>Favorite Books:</strong> Save your favorite books and see others favour's book.</li>
 </ul>
 
 ## 🖼️Screenshots
