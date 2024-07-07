@@ -26,6 +26,12 @@
 ![30592427-490B-4bf2-A70D-EFA0C5B0566B](https://github.com/FrederickAurelio/Bookling/assets/121996224/caa6b8b3-be29-4da7-bfda-0d4b9cd9c55a)
 ![093401C5-0BCD-470a-B554-7AB5F002F811](https://github.com/FrederickAurelio/Bookling/assets/121996224/6acb3b21-80e3-43a1-884d-6517242e9909)
 
+## Flowchart
+![Flowchart](https://github.com/FrederickAurelio/Bookling/assets/121996224/51848457-6e0d-4a79-8da1-1f26775ba271)
+## Entity Relationship Diagram
+![erd](https://github.com/FrederickAurelio/Bookling/assets/121996224/5f1600e8-03c7-41eb-91c7-fbb9689c8977)
+
+
 ## 🧑‍💻Contributors
 - Frederick Aurelio Halim (front-end)
 - Stevanie (back-end)
