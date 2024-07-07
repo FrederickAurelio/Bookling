@@ -4,12 +4,12 @@
 </div>
 
 ## ⚙️Technology
+<p>The website was implemented using modern stack combining React as the front-end, and Django Rest Framework as the back-end.</p>
 ### Frontend
 <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a><a href="https://tanstack.com/query/v3" target="_blank" rel="noreferrer"> <img src="https://github.com/webmin/webmin/assets/121996224/b8260626-f426-4e90-b94b-feaa600b709c" alt="react query" width="40" height="40"/> </a>
 
 ### Backend
 <img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/9ae50146-d917-4e08-b82f-6a86f8f29a49" alt="django rest framework" width="70" height="40"/>
-<p>The website was implemented using modern stack combining React as the front-end, and Django Rest Framework as the back-end.</p>
 
 ## 🖼️Screenshots
 ![Screenshot 2024-07-05 195043](https://github.com/FrederickAurelio/Bookling/assets/121996224/fc8a81d9-aafa-4c57-8211-68693719feb9)
