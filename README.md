@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div align="center">
   <h1>📕Bookling</h1>
   <p>This is a website that allows users to sign up, log in, and post book information to share with others. Users can search, sort, and filter books according to their preferences and save their favorite books. Users can also view which books others favour.</p>
 </div>
