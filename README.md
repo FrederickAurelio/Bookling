@@ -15,10 +15,11 @@
 <a href="https://www.django-rest-framework.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/9ae50146-d917-4e08-b82f-6a86f8f29a49" alt="django rest framework" width="70" height="40"/> </a>
 
 ## 🖥️Features
-- User Registration and Authentication
-- Create, Edit, Delete Books
-- Search, Filter, and SortBy
-- Like/Unlike Books
+- User Management: Sign up and log in to create a personalized account.
+- Book Sharing: Share and discover new books with fellow users.
+- Advanced Search: Easily find books by title, author.
+- Sorting and Filtering: Customize your book list based on your preferences.
+- Favorite Books: Save and manage your favorite books for quick access.
 
 ## 🖼️Screenshots
 ![Screenshot 2024-07-05 195043](https://github.com/FrederickAurelio/Bookling/assets/121996224/fc8a81d9-aafa-4c57-8211-68693719feb9)
