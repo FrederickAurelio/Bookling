@@ -26,8 +26,8 @@ export const resizeFile = (file) =>
   new Promise((resolve) => {
     Resizer.imageFileResizer(
       file,
-      600, // width
-      900, // height (1:1.5 ratio)
+      400, // width
+      600, // height (1:1.5 ratio)
       "JPEG",
       100, // quality
       0, // rotation

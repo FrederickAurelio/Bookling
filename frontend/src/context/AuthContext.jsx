@@ -17,10 +17,8 @@ function AuthProvider({ children }) {
 
   function login({ token, username }) {
     queryClient.removeQueries();
-    setAuthState({
-      token,
-      username,
-      isAuthenticated: true,
+    setAuthState((obj) => {
+      return { ...obj, token, username, isAuthenticated: true };
     });
   }
 
