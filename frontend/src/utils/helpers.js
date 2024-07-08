@@ -29,14 +29,14 @@ export const resizeFile = (file) =>
       400, // width
       600, // height (1:1.5 ratio)
       "JPEG",
-      100, // quality
+      40, // quality
       0, // rotation
       (uri) => {
         resolve(uri);
       },
       "file",
-      600, // min width
-      900, // min height
+      400, // min width
+      600, // min height
       { aspectRatio: 2 / 3, lockAspectRatio: true } // Maintain aspect ratio
     );
   });
