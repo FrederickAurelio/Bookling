@@ -4,14 +4,9 @@ env/
 # Ignore compiled bytecode
 __pycache__/
 
-# Ignore the database file
-db.sqlite3
 
 # Ignore Django migrations
 **/migrations/
-
-# Ignore media files
-media/
 
 # Ignore sensitive data (e.g., settings with secrets)
 *.env
