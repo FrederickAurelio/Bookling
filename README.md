@@ -1,7 +1,8 @@
 <div align="center">
   <h1>📕Bookling</h1>
   <p>This is a website that allows users to sign up, log in, and post book information to share with others. Users can search, sort, and filter books according to their preferences and save their favorite books. Users can also view which books others favour.</p>
-  <h3>Link</h3><a href="http://120.26.45.50/" target="_blank" rel="noreferrer"><p>📕Bookling (China Server)</p></a>
+  <h3>Link</h3>
+  <a href="http://120.26.45.50/" target="_blank" rel="noreferrer"><p>📕Bookling (China Server)</p></a>
 </div>
 
 ## ⚙️Technology
